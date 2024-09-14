@@ -1,0 +1,5 @@
+{
+  "entry": ["src/index.ts"],
+  "project": ["src/**"],
+  "ignore": ["src/lib/theme-ui-import.ts"]
+}

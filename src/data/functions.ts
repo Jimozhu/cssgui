@@ -1,0 +1,82 @@
+const transformFunctions = [
+  'matrix',
+  'matrix3d',
+  'perspective',
+  'rotate',
+  'rotate3d',
+  'rotatex',
+  'rotatey',
+  'rotatez',
+  'scale',
+  'scale3d',
+  'scalex',
+  'scaley',
+  'scalez',
+  'skew',
+  'skewx',
+  'skewy',
+  'skewz',
+  'translate',
+  'translate3d',
+  'translatex',
+  'translatey',
+  'translatez',
+] as const
+const mathFunctions = ['calc', 'clamp', 'max', 'min'] as const
+const filterFunctions = [
+  'blur',
+  'brightness',
+  'contrast',
+  'drop-shadow',
+  'grayscale',
+  'hue-rotate',
+  'invert',
+  'opacity',
+  'saturate',
+  'sepia',
+] as const
+const colorFunctions = [
+  'color',
+  'color-mix',
+  'color-contrast',
+  'device-cmyk',
+  'hsl',
+  'hsla',
+  'hwb',
+  'lab',
+  'lch',
+  'rgb',
+  'rgba',
+] as const
+const imageFunctions = [
+  'conic-gradient',
+  'image',
+  'image-set',
+  'linear-gradient',
+  'radial-gradient',
+  'repeating-linear-gradient',
+  'repeating-radial-gradient',
+  'repeating-conic-gradient',
+  'cross-fade',
+  'element',
+  'paint',
+] as const
+const counterFunctions = ['counter', 'counters', 'symbols'] as const
+const shapeFunctions = [
+  'circle',
+  'ellipse',
+  'inset',
+  'polygon',
+  'path',
+] as const
+const referenceFunctions = ['attr', 'env', 'url', 'var'] as const
+export const functions = [
+  ...transformFunctions,
+  ...mathFunctions,
+  ...filterFunctions,
+  ...colorFunctions,
+  ...imageFunctions,
+  ...counterFunctions,
+  ...shapeFunctions,
+  ...referenceFunctions,
+] as const
