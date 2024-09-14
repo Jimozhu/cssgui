@@ -1,5 +1,5 @@
 {
-  "entry": ["src/index.ts"],
+  "entry": ["src/index.ts", "src/main.tsx"],
   "project": ["src/**"],
-  "ignore": ["src/lib/theme-ui-import.ts"]
+  "ignore": ["src/lib/theme-ui-import.ts", "src/types/modules.d.ts"]
 }

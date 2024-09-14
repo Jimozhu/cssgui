@@ -27,7 +27,6 @@ export function InputHeader({
 }: Props) {
   const { showFieldRegenerate } = useEditorConfig();
   const theme = useTheme();
-  console.log('editorConfig', showFieldRegenerate);
   return (
     <div
       className='input-header'

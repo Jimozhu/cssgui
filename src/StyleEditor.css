@@ -1,0 +1,16 @@
+#root {
+  width: calc(100vw - 2rem);
+}
+.editors {
+  display: flex;
+}
+.editors section {
+  width: 350px;
+  border-left: 2px solid #ddd;
+  padding-left: 2rem;
+}
+
+.editors section:first-of-type {
+  border-left-width: 0;
+  padding-left: 0;
+}
