@@ -2,7 +2,7 @@ import { test, expect } from 'vitest';
 import { parseStyles } from '../src/components/Editor/Controls';
 import { properties } from '../src/data/properties';
 import { stylesToEditorSchema } from '../src/lib/transformers/styles-to-editor-schema';
-
+import { tokenize } from '../src/lib/parse';
 
 test('should parse styles correctly', () => {
   const styles = { color: 'red', cursor: 'progress' };
@@ -44,7 +44,38 @@ test('normalizeSchema', () => {
   const result2 = schema.validate('large');
   expect(result2).toBe(true);
 
-  const val = parseStyles({ fontSize: '2px' });
-  const result3 = schema.validate(val.fontSize);
+  const val1 = parseStyles({ fontSize: '2px' });
+  const result3 = schema.validate(val1.fontSize);
   expect(result3).toBe(true);
+
+  const result4 = schema.validate("2rem");
+  expect(result4).toBe(false);
+
+  const val2 = parseStyles({ fontSize: '2rem', color: '#fff' });
+  expect(schema.validate(val2.fontSize)).toBe(true);
+  const colorSchema = properties['color'];
+  expect(colorSchema.validate(val2.color)).toBe(true);
 });
+
+test('tokenize', () => {
+  const css = `
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 5px 3px;
+  border-width: 2px;
+  font-weight: bolder;
+  background-color: #96e4cfe8;
+  color: #e11919;
+  text-align: left;
+  font-family: Recursive;
+  font-style: italic;
+  font-size: 25px;
+  background-image: ;
+  border-style: dotted;
+  `
+  const val = tokenize(css);
+  console.log({ val });
+})

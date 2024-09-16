@@ -452,6 +452,7 @@ function getPropertiesFromChildren(children: ReactNode): string[] {
   return properties
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function parseStyles(styles: Record<string, any>) {
   return mapValues(styles, (value, property) => {
     const schema = properties[property]
