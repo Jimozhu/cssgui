@@ -3,6 +3,7 @@ import { parseStyles } from '../src/components/Editor/Controls';
 import { properties } from '../src/data/properties';
 import { stylesToEditorSchema } from '../src/lib/transformers/styles-to-editor-schema';
 import { tokenize } from '../src/lib/parse';
+import { parseStyleString } from '../src/lib/parsers';
 
 test('should parse styles correctly', () => {
   const styles = { color: 'red', cursor: 'progress' };
@@ -75,7 +76,12 @@ test('tokenize', () => {
   font-size: 25px;
   background-image: ;
   border-style: dotted;
-  `
+  `;
   const val = tokenize(css);
   console.log({ val });
-})
+});
+
+test('stringToCSSProperties', () => {
+  const rule = parseStyleString(`.abc { color: white;font-size:5px; }`);
+  console.log('parseStyleString', { rule });
+});

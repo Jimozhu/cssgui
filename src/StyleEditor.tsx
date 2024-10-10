@@ -1,6 +1,9 @@
 import './StyleEditor.css';
 import { useState } from "react";
 import { codegen, Dimension, DimensionInput, Editor, Inputs, styled, Styles } from ".";
+import { parseStyleString } from './lib/parsers';
+
+type AvatarStyles = Pick<Styles, 'fontFamily' | 'fontSize' | 'textAlign' | 'color' | 'backgroundColor'>;
 
 export function StyleEditor() {
   const [styles, setStyles] = useState<Styles>({
@@ -11,17 +14,19 @@ export function StyleEditor() {
     backgroundColor: '#96e4cfe8',
   });
 
-  const [style2, setStyle2] = useState<Styles>({
-    fontFamily: 'Recursive',
-    // fontSize: { unit: 'px', value: 26 },
-    // fontSize: "26px",
-    fontSize: "larger",
-    textAlign: "center",
-    color: '#e30f0f',
-    backgroundColor: '#96e4cfe8',
-  });
+  const stylesRecord = parseStyleString(`
+    .style2 {
+      background-color: #96e4cfe8;
+      color: #ff00ff;
+      text-align: center;
+      font-size: larger;
+      font-family: Recursive;
+    }
+    `);
 
-  const overrideUnits = (units: string[]) => {
+  const [style2, setStyle2] = useState<AvatarStyles>(stylesRecord);
+
+  const overrideUnits = () => {
     // console.log('Inputs.FontSize', units);
     return ['px', 'rem', 'em', 'vh', 'vw'];
   };
