@@ -119,10 +119,9 @@ function normalizeSchema(propertyData: PropertyData): DataTypeSchema<any> {
         stringify: (value) => String(value),
       }
     } else {
-      // TODO: Figure out how to make this use Ranges rather than UnitRanges
+      // @ts-expect-error TODO: Figure out how to make this use Ranges rather than UnitRanges
       // so there's proper support for `range: 'nonnegative'`
-      // @ts-ignore
-      let schema = primitiveMap[input](propertyData) as any
+      const schema = primitiveMap[input](propertyData) as any
       return joinSchemas(
         compact([
           schema,

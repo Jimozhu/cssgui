@@ -199,7 +199,7 @@ export const Editor = ({
           return [property, getDefaultValue(property)]
         })
     )
-  }, [propertyList])
+  }, [propertyList, styles])
 
   const allStyles = { ...defaultStyles, ...styles }
 

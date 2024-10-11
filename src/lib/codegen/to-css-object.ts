@@ -24,7 +24,7 @@ type StyleEntry = [string, Length | string | null | undefined]
 export const toCSSObject = (providedStyles: Styles, theme?: Theme): any => {
   const styles = stylesToEditorSchema(providedStyles)
   const cssObject = Object.entries(styles).reduce(
-    // @ts-ignore
+    // @ts-expect-error TODO: fix this type issue
     (acc: Styles, curr: StyleEntry) => {
       const [property, value] = curr
       if (isNestedSelector(property.replace(/^:+/, ''))) {

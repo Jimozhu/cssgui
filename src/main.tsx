@@ -1,11 +1,11 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { StyleEditor } from './StyleEditor';
+import { Demo } from './Demo';
 
 function App() {
   return (
     <>
-      <StyleEditor />
+      <Demo />
     </>
   );
 }

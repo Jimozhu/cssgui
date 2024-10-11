@@ -1,30 +1,52 @@
-import './StyleEditor.css';
+import './demo.css';
 import { useState } from "react";
-import { codegen, Dimension, DimensionInput, Editor, Inputs, styled, Styles } from ".";
+import { codegen, Dimension, DimensionInput, Editor, Inputs, parseStyles, styled, Styles } from ".";
 import { parseStyleString } from './lib/parsers';
 
 type AvatarStyles = Pick<Styles, 'fontFamily' | 'fontSize' | 'textAlign' | 'color' | 'backgroundColor'>;
 
-export function StyleEditor() {
+export function Demo() {
   const [styles, setStyles] = useState<Styles>({
     fontFamily: 'Recursive',
-    // fontSize: "larger",
+    fontSize: "larger",
+    // fontSize:{
+    //   value: 25,
+    //   unit: 'px',
+    // },
+    // fontSize: "25px",
     textAlign: "center",
     color: '#e30f0f',
     backgroundColor: '#96e4cfe8',
   });
 
-  const stylesRecord = parseStyleString(`
-    .style2 {
-      background-color: #96e4cfe8;
-      color: #ff00ff;
-      text-align: center;
-      font-size: larger;
-      font-family: Recursive;
-    }
-    `);
+//   const stylesRecord = parseStyleString(`
+// .style2 {
+//     background-color: rgba(150, 228, 207, 0.91);
+//     color: rgb(255, 0, 255);
+//     /* font-family: Rammetto One; */
+//     font-size: larger;
+//     /* text-align: center;
+//     /* font-style: italic;
+//     /* font-weight: bold;
+//     /* text-decoration: double; */
+//     /* border: 1px solid red; */
+//     /* border-radius: 5px; */
 
-  const [style2, setStyle2] = useState<AvatarStyles>(stylesRecord);
+//     /* margin: 5px; */
+//     /* padding: 5px; */
+// }
+//     `);
+//   const styles2Obj = parseStyles(stylesRecord);
+
+  const [style2, setStyle2] = useState<AvatarStyles>({
+    fontFamily: 'Recursive',
+    // fontSize: { unit: 'px', value: 26 },
+    // fontSize: "26px",
+    fontSize: "larger",
+    textAlign: "center",
+    color: '#e30f0f',
+    backgroundColor: '#96e4cfe8',
+  });
 
   const overrideUnits = () => {
     // console.log('Inputs.FontSize', units);

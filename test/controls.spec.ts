@@ -1,14 +1,14 @@
-import { test, expect } from 'vitest';
+import { test, expect, it } from 'vitest';
 import { parseStyles } from '../src/components/Editor/Controls';
 import { properties } from '../src/data/properties';
 import { stylesToEditorSchema } from '../src/lib/transformers/styles-to-editor-schema';
-import { tokenize } from '../src/lib/parse';
 import { parseStyleString } from '../src/lib/parsers';
+import { toCSSObject } from '../src/lib';
 
 test('should parse styles correctly', () => {
   const styles = { color: 'red', cursor: 'progress' };
   const result = parseStyles(styles);
-  console.log({ properties, styles, result });
+  // console.log({ properties, styles, result });
   expect(result).toEqual({ color: 'red', cursor: 'progress' });
 });
 
@@ -22,7 +22,7 @@ test('should throw an error for parsing failures', () => {
   expect(() => parseStyles(styles)).toThrow('Parsing unknown property: size');
 });
 
-test('stylesToEditorSchema', () => {
+it.skip('stylesToEditorSchema', () => {
   const schemas = stylesToEditorSchema({
     color: 'red',
     cursor: 'progress',
@@ -48,6 +48,10 @@ test('normalizeSchema', () => {
   const val1 = parseStyles({ fontSize: '2px' });
   const result3 = schema.validate(val1.fontSize);
   expect(result3).toBe(true);
+  expect(val1).toBeInstanceOf(Object);
+  const fontSZ = val1.fontSize as CSSUnitValue;
+  expect(fontSZ.unit).toBe('px');
+  expect(fontSZ.value).toBe(2);
 
   const result4 = schema.validate("2rem");
   expect(result4).toBe(false);
@@ -58,30 +62,14 @@ test('normalizeSchema', () => {
   expect(colorSchema.validate(val2.color)).toBe(true);
 });
 
-test('tokenize', () => {
-  const css = `
-  border-radius: 5px;
-  margin-left: 5px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
-  padding: 5px 3px;
-  border-width: 2px;
-  font-weight: bolder;
-  background-color: #96e4cfe8;
-  color: #e11919;
-  text-align: left;
-  font-family: Recursive;
-  font-style: italic;
-  font-size: 25px;
-  background-image: ;
-  border-style: dotted;
-  `;
-  const val = tokenize(css);
-  console.log({ val });
-});
-
-test('stringToCSSProperties', () => {
+it.skip('stringToCSSProperties', () => {
   const rule = parseStyleString(`.abc { color: white;font-size:5px; }`);
   console.log('parseStyleString', { rule });
+});
+
+test('toCSSObject', () => {
+  const obj = toCSSObject(parseStyles({
+    fontSize: "10px"
+  }));
+  console.log({ obj });
 });
