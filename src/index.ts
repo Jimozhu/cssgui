@@ -28,3 +28,7 @@ export { parseStyles } from './components/Editor/Controls'
 export * from './lib'
 export * from './types/theme'
 export * from './types/css'
+
+import { StyleEditor } from './webcomponents/style-editor';
+
+customElements.define('style-editor', StyleEditor);
